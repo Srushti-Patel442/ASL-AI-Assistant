@@ -8,7 +8,7 @@ A real-time desktop application that recognizes American Sign Language (ASL), tr
 
 ## Overview
 
-ASL AI Assistant is an end-to-end computer vision application designed to bridge communication between ASL users and non-signers. Using a webcam, the application detects hand landmarks with MediaPipe, classifies both static letters and dynamic gestures using custom TensorFlow models, translates recognized signs into fluent English with Llama 3 running locally through Ollama, and generates speech using an offline text-to-speech engine.
+ASL AI Assistant is an end-to-end computer vision application designed for communication between ASL users and non-signers. Using a webcam, the application detects hand landmarks with MediaPipe, classifies both static letters and dynamic gestures using custom TensorFlow models, translates recognized signs into fluent English with Llama 3 running locally through Ollama, and generates speech using an offline text-to-speech engine.
 
 The entire inference pipeline runs locally without requiring cloud services or internet connectivity.
 
