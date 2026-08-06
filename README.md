@@ -2,13 +2,11 @@
 
 A real-time desktop application that recognizes American Sign Language (ASL), translates recognized signs into natural English using a locally hosted large language model, and generates speech through offline text-to-speech.
 
-![Demo](assets/demo.gif)
-
 ---
 
 ## Overview
 
-ASL AI Assistant is an end-to-end computer vision application designed for communication between ASL users and non-signers. Using a webcam, the application detects hand landmarks with MediaPipe, classifies both static letters and dynamic gestures using custom TensorFlow models, translates recognized signs into fluent English with Llama 3 running locally through Ollama, and generates speech using an offline text-to-speech engine.
+ASL AI Assistant is an end-to-end computer vision application designed to bridge communication between ASL users and non-signers. Using a webcam, the application detects hand landmarks with MediaPipe, classifies both static letters and dynamic gestures using custom TensorFlow models, translates recognized signs into fluent English with Llama 3 running locally through Ollama, and generates speech using an offline text-to-speech engine.
 
 The entire inference pipeline runs locally without requiring cloud services or internet connectivity.
 
@@ -26,32 +24,22 @@ The entire inference pipeline runs locally without requiring cloud services or i
 
 ---
 
-## Preview
-
-### Live Recognition
-
-![Interface](assets/interface.png)
-
-### Translation Pipeline
-
-![Architecture](assets/architecture.png)
-
----
-
 ## Tech Stack
 
-- **Programming Language:** Python
-- **Computer Vision:** OpenCV, MediaPipe
-- **Machine Learning:** TensorFlow, Keras, NumPy
-- **Large Language Model:** Ollama, Llama 3
-- **Speech Synthesis:** pyttsx3
-- **Version Control:** Git, GitHub
+| Category | Technologies |
+|----------|--------------|
+| Programming Language | Python |
+| Computer Vision | OpenCV, MediaPipe |
+| Machine Learning | TensorFlow, Keras, NumPy |
+| Natural Language Processing | Ollama, Llama 3 |
+| Speech Synthesis | pyttsx3 |
+| Version Control | Git, GitHub |
 
 ---
 
 ## Dataset
 
-The recognition models are trained on custom datasets collected using MediaPipe hand landmarks.
+The recognition models are trained using custom datasets collected with MediaPipe hand landmarks.
 
 ### Static Recognition
 
@@ -63,7 +51,7 @@ The recognition models are trained on custom datasets collected using MediaPipe 
 - 8 gesture classes
 - Target dataset: **150–200 gesture sequences per class**
 
-Current dynamic gestures include:
+Current supported gestures include:
 
 - Hello
 - Yes
@@ -72,6 +60,8 @@ Current dynamic gestures include:
 - Please
 - Sorry
 - I Love You
+
+Additional gestures are currently being developed.
 
 ---
 
@@ -88,19 +78,19 @@ Current dynamic gestures include:
 
 ## Installation
 
-Clone the repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/Srushti-Patel442/ASL-AI-Assistant.git
 ```
 
-Install dependencies
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application
+Run the application:
 
 ```bash
 python -m backend.app.vision.camera
@@ -112,17 +102,15 @@ python -m backend.app.vision.camera
 
 - Expand the supported ASL vocabulary
 - Improve recognition accuracy with larger training datasets
-- Support conversational context for multi-sentence translation
-- Enhance the desktop interface with improved visual feedback
-- Explore a web-based deployment
+- Add conversational context for more natural translations
+- Enhance the desktop interface and user experience
+- Explore cloud-based deployment
 
 ---
 
 ## Author
 
 **Srushti Patel**
-
-Computer Engineering Student  
 Toronto Metropolitan University
 
 GitHub: https://github.com/Srushti-Patel442
