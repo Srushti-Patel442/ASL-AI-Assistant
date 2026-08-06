@@ -111,6 +111,3 @@ python -m backend.app.vision.camera
 ## Author
 
 **Srushti Patel**
-Toronto Metropolitan University
-
-GitHub: https://github.com/Srushti-Patel442
