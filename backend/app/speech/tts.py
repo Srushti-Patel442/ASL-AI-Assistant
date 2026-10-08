@@ -9,9 +9,9 @@ import pyttsx3
 
 class Speaker:
     def speak(self,text):
-        if text.strip()=="":
+        if text.strip()=="":#empty text
             return 
-        engine=pyttsx3.init()
+        engine=pyttsx3.init()#turn on the voice 
 
         engine.setProperty("rate", 170)
         engine.setProperty("volume", 1.0)
