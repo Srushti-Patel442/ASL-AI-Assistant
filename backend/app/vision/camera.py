@@ -73,7 +73,7 @@ def start_camera():
                     landmark.z
                 ])
 
-            gesture_buffer.append(sample)
+            gesture_buffer.append(sample)#create a temporary box for strage while collecting mroe frames
 
             if len(gesture_buffer)>60:
                 gesture_buffer.pop(0)
@@ -87,6 +87,7 @@ def start_camera():
 
             prediction, confidence=predictor.predict(sample)
 
+            #dynamic gesture overrides the static if it has more accuracy/ prediction %
             if (
                  gesture_confidence>0.90
                 and time.time()-last_gesture_time<1
@@ -96,11 +97,13 @@ def start_camera():
 
             stable_prediction=prediction
             stable_confidence=confidence
-            
+
+            #weak predictions
             if confidence<0.70:
                 stable_prediction="Unknown"
                 stable_confidence=confidence
 
+            #display info 
             cv2.putText(
                 frame,
                 "ASL AI Assistant",
@@ -143,6 +146,7 @@ def start_camera():
 
             y=150
 
+            #display saved asl signs on screen
             for sign in recognized_signs[-5:]:
                 cv2.putText(
                     frame,
@@ -199,6 +203,7 @@ def start_camera():
         # wait 1 millisecond for the key to press
         key=cv2.waitKey(1) & 0xFF
 
+        #pressing space saves gesture
         if key==ord(" "):
              if(
                   stable_prediction!="Unknown"
@@ -206,7 +211,7 @@ def start_camera():
              ):
                   if(
                        len(recognized_signs)==0
-                       or recognized_signs[-1]!=stable_prediction
+                       or recognized_signs[-1]!=stable_prediction#prventing duplicates
                   ):
                     recognized_signs.append(stable_prediction)
                     print(recognized_signs)
@@ -215,17 +220,17 @@ def start_camera():
                     gesture_confidence=0.0
                     gesture_buffer.clear()
 
-        elif key == 13: #Enter
+        elif key == 13: #Enter key translates the gestures
             if recognized_signs and not translating:
                  translating=True
                  translated_signs="Translating..."
-                 threading.Thread(
+                 threading.Thread(#add threading because llama translation can take some time, prevent freezing camera
                       target=translate_and_speak,
                       args=(recognized_signs.copy(),),
                       daemon=True
                  ).start()
 
-        elif key==ord("c"):
+        elif key==ord("c"):#clear everything
              recognized_signs.clear()
              translated_signs=""
 
@@ -236,7 +241,7 @@ def start_camera():
              gesture_confidence=0.0
              gesture_buffer.clear()
 
-        elif key==ord("q"):
+        elif key==ord("q"):#q exit
              break
 
     camera.release()#release webcam so other programs can use it
