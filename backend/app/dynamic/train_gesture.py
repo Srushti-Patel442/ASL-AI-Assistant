@@ -38,7 +38,7 @@ def train_gesture():
     for gesture,label in label_map.items():
         gesture_folder=os.path.join(dataset_path, gesture)
         for file in os.listdir(gesture_folder):
-            if file.endswith(".npy"):
+            if file.endswith(".npy"):#save numpy file with multiple frames
                 file_path=os.path.join(gesture_folder, file)
                 print(f"Loading {file_path}...")
                 sample=np.load(file_path)
@@ -80,7 +80,7 @@ def train_gesture():
         x_train,
         y_train,
         validation_data=(x_val, y_val),
-        epochs=30,#epoch means the model sees all 308 samples once
+        epochs=30,#epoch means the model sees all samples once
         batch_size=8#tensorflow trains on 16 smaples at a time
     )
 
