@@ -18,7 +18,7 @@ def train_model():
     print("Loading dataset....")
     print("TensorFlow Version:", tf.__version__)
 
-    x=[]#landmark values
+    x=[]#landmark values(input)
     y=[]#correct answer (a, b, c)
 
     dataset_path="../dataset/static"
@@ -65,9 +65,9 @@ def train_model():
 
     model=keras.Sequential([
         keras.layers.Input(shape=(63,)),
-        keras.layers.Dense(128, activation="relu"),
+        keras.layers.Dense(128, activation="relu"),#neurons for specific patterns
         keras.layers.Dense(64, activation="relu"),
-        keras.layers.Dense(len(label_map), activation="softmax")######### update number for mroe letters
+        keras.layers.Dense(len(label_map), activation="softmax")#update number for mroe letters
     ])
 
     model.compile(
@@ -80,15 +80,15 @@ def train_model():
         x_train,
         y_train,
         validation_data=(x_val, y_val),
-        epochs=50,#epoch means the model sees all 308 samples once
+        epochs=50,#the model sees all samples once
         batch_size=16#tensorflow trains on 16 smaples at a time
     )
 
     os.makedirs("../models", exist_ok=True)
 
     with open("../models/labels.json", "w") as file:
-        json.dump(label_map, file, indent=4)
-    model.save("../models/asl_model.keras")#brain of the trained ai
+        json.dump(label_map, file, indent=4)#save the label mapping
+    model.save("../models/asl_model.keras")#brain of the trained ai, sores neural network structure, learned weights, and training configuration
     print("Model saved successfully!")
 
 if __name__=="__main__":
